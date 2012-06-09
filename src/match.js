@@ -13,12 +13,21 @@ var Match = function() {
     },
 
     Advantage: function() {
-      console.log('A: ' + this.A + ' B: ' + this.B);
       if((this.A >= 40 && this.B >= 40) && (this.A > this.B)) {
         return 'A';  
       } else {
         return 'B';
       }
+    },
+
+    Winner: function() {
+      if((this.A >= 50 && this.B < 40) || (this.A >= 50 && this.Advantage() === 'A')) {
+        return 'A';
+      }
+      if((this.B >= 50 && this.A < 40) || (this.B >= 50 && this.Advantage() === 'B')) {
+        return 'B';
+      }
+      return 'None';
     }
   };
 

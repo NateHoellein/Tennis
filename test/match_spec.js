@@ -89,4 +89,68 @@ describe('A Match', function() {
     });
     done();
   });
+
+  it('should show winner "A"', function(done) {
+    var match = new Match();
+    match.point('A', function() {});
+    match.point('B', function() {});
+    match.point('A', function() {});
+    match.point('B', function() {});
+    match.point('A', function() {});
+    match.point('A', function(score) {
+      score.A.should.equal(50);
+      score.B.should.equal(30);
+      score.Winner().should.equal('A'); 
+    });
+    done();
+  });
+
+  it('should show winner "B"', function(done) {
+    var match = new Match();
+    match.point('A', function() {});
+    match.point('B', function() {});
+    match.point('A', function() {});
+    match.point('B', function() {});
+    match.point('B', function() {});
+    match.point('B', function(score) {
+      score.B.should.equal(50);
+      score.A.should.equal(30);
+      score.Winner().should.equal('B'); 
+    });
+    done();
+  });
+
+  it('should show winner "A" after advantage "A"', function(done) {
+    var match = new Match();
+    match.point('A', function() {});
+    match.point('B', function() {});
+    match.point('A', function() {});
+    match.point('B', function() {});
+    match.point('B', function() {});
+    match.point('A', function() {});
+    match.point('A', function() {});
+    match.point('A', function(score) {
+      score.A.should.equal(60);
+      score.B.should.equal(40);
+      score.Winner().should.equal('A'); 
+    });
+    done();
+  });
+
+  it('should show winner "B" after advantage "B"', function(done) {
+    var match = new Match();
+    match.point('A', function() {});
+    match.point('B', function() {});
+    match.point('A', function() {});
+    match.point('B', function() {});
+    match.point('B', function() {});
+    match.point('A', function() {});
+    match.point('B', function() {});
+    match.point('B', function(score) {
+      score.B.should.equal(60);
+      score.A.should.equal(40);
+      score.Winner().should.equal('B'); 
+    });
+    done();
+  });
 });
